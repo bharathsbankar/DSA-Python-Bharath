@@ -1,0 +1,669 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	
++++ b/main.py	(date 1730096143373)
+@@ -1,0 +1,7 @@
++import datetime
++import time
++#
++a=datetime.datetime.now()
++# a=datetime.date.today()
++# a = time.strftime("%H:%M:%S", time.localtime())
++print(a)
+\ No newline at end of file
+Index: DataStructures/stack/exerxise1.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DataStructures/stack/exerxise1.py b/DataStructures/stack/exerxise1.py
+--- a/DataStructures/stack/exerxise1.py	
++++ b/DataStructures/stack/exerxise1.py	(date 1730096143367)
+@@ -1,19 +1,6 @@
+-#problem : reverse_string("hey how are you") must return
+-# the string "uoy era woh yeh" using a stack data structure
+-
+-from s1 import Stack
+-
+-class StringReversing(Stack):
+-    def __init__(self):
+-        super().__init__()
+-    def reversing(self,string):
+-        # print(string[::-1])
+-        self.push(string[-1::-1])
+-
+-
+-
++import s1
+ 
+ if __name__=='__main__':
+-    a = StringReversing()
+-    a.reversing("hey how are you")
+-    print(a)
++    a = s1.Stack(10)
++    a.push("akshay")
++    print(a)
+\ No newline at end of file
+Index: DataStructures/stack/exercise2.py
+===================================================================
+diff --git a/DataStructures/stack/exercise2.py b/DataStructures/stack/exercise2.py
+deleted file mode 100644
+--- a/DataStructures/stack/exercise2.py	
++++ /dev/null	
+@@ -1,27 +0,0 @@
+-#problem : write a function to check whether the parenthesis in the expressions are balanced or not
+-#possible parenthesis are (),{},[]
+-#is_balanced("({a+b})") --> return true
+-#is_balanced("({a+b])") --> return False
+-
+-from s1 import Stack
+-class E2(Stack):
+-    def __init__(self):
+-        super().__init__()
+-    def is_balanced(self,string):
+-        a={"{","[","("}# for searching in set , time complexity would be 0(1)
+-        b={"}","]",")"}
+-        for char in string:
+-            if char in a:
+-                self.push(char)
+-            elif char in b:
+-                if self.peek()+char=="()" or self.peek()+char=="{}" or self.peek()+char=="[]":
+-                    self.pop()
+-                else:
+-                    return False
+-            else:
+-                continue
+-        return self.is_empty()
+-if __name__=='__main__':
+-    a=E2()
+-    print(a.is_balanced("({a+b})[a+b}{(a+b)}]"))
+-
+Index: DataStructures/HASH_MAP/h1_chaining.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DataStructures/HASH_MAP/h1_chaining.py b/DataStructures/HASH_MAP/h1_chaining.py
+--- a/DataStructures/HASH_MAP/h1_chaining.py	
++++ b/DataStructures/HASH_MAP/h1_chaining.py	(date 1730096143290)
+@@ -1,15 +1,15 @@
+-#collision handling by chaining method
++#chaining
+ class HashTable:
+     def __init__(self):
+         self.MAX=100
+-        # self.arr=[ [] for i in range(self.MAX)]
+-        self.arr= [[]]*self.MAX
++        self.arr=[ [] for i in range(self.MAX)]
++
+     def getHash(self,key):
+         h = 0
+         for char in key:
+             h += ord(char)
+         return h % self.MAX
+-    #collision handling with chaining
++    #hashing with chaining
+     def __setitem__(self,key,value):
+         h=self.getHash(key)
+         for index,element in enumerate(self.arr[h]):
+Index: DataStructures/Trees/p1.py
+===================================================================
+diff --git a/DataStructures/Trees/p1.py b/DataStructures/Trees/p1.py
+deleted file mode 100644
+--- a/DataStructures/Trees/p1.py	
++++ /dev/null	
+@@ -1,67 +0,0 @@
+-class TreeNode:
+-    def __init__(self,data):
+-        self.data=data
+-        self.parent=None
+-        self.children=[]
+-        #children list must contain object of class TreeeNode type only
+-        #i.e childrens must also be of type TreeNode
+-    def add_child(self,child):#child must be of TreeNode type
+-        self.children.append(child)
+-        child.parent=self
+-
+-    def print_tree(self):
+-        a=self.get_level()
+-        indent="  "*a
+-        prefix=indent+"|__" if self.parent else ""
+-        print(prefix+self.data)
+-        if self.children:
+-            for node in self.children:
+-                node.print_tree()
+-
+-    def get_level(self):
+-        level=0
+-
+-        while self.parent:
+-            level+=1
+-            self=self.parent
+-        return level
+-
+-def build_tree():
+-    root=TreeNode("Electronics")
+-
+-    laptop=TreeNode("laptop")
+-    root.add_child(laptop)
+-    asus=TreeNode("ASUS")
+-    mac=TreeNode("mac")
+-    hp=TreeNode("hp")
+-    laptop.add_child(asus)
+-    laptop.add_child(mac)
+-    laptop.add_child(hp)
+-
+-    TV=TreeNode("TV")
+-    root.add_child(TV)
+-    mi=TreeNode("mi")
+-    lg=TreeNode("lg")
+-    sony=TreeNode("sony")
+-    TV.add_child(mi)
+-    TV.add_child(lg)
+-    TV.add_child(sony)
+-
+-    headphones=TreeNode("headphones")
+-    root.add_child(headphones)
+-    noise=TreeNode("noise")
+-    jbl=TreeNode("jbl")
+-    apple=TreeNode("apple")
+-    headphones.add_child(noise)
+-    headphones.add_child(apple)
+-    headphones.add_child(jbl)
+-
+-    return root
+-
+-
+-
+-if __name__=='__main__':
+-    root=build_tree()
+-    print(root.get_level())
+-    print(root.get_level())
+-    root.print_tree()
+Index: DataStructures/Trees/binarytree/p1.py
+===================================================================
+diff --git a/DataStructures/Trees/binarytree/p1.py b/DataStructures/Trees/binarytree/p1.py
+deleted file mode 100644
+--- a/DataStructures/Trees/binarytree/p1.py	
++++ /dev/null	
+@@ -1,135 +0,0 @@
+-#binary search tree
+-#elements in left subtree will be less than the current node
+-#and elements in the right hand side will be greater than the current node
+-
+-#there were two types of searching in binary search tree
+-#1.Breadth first search
+-#2.depth first search - inorder,preorder,postorder
+-
+-
+-#exercise:deletion of node
+-#-----------case 1:node has noo children,case 2:node has either of the children ,case 3: node has both the children
+-class BST:
+-    def __init__(self,data):
+-        self.data=data
+-        self.left=None
+-        self.right=None
+-
+-
+-    def addChild(self,data):
+-        if data==self.data:
+-            return
+-        elif data<self.data:
+-
+-            #add data in left subtree
+-            if self.left:
+-                self.left.addChild(data)
+-            else:
+-                self.left=BST(data)
+-        else:
+-                    #add data right in sub tree
+-            if self.right:
+-                self.right.addChild(data)
+-            else:
+-                self.right=BST(data)
+-    #in-order traversaal
+-    def inorderTraversal(self):
+-        elements=[]
+-        #left-root-right
+-        #visit left tree
+-        if self.left:
+-            elements+=self.left.inorderTraversal()
+-
+-        #visit root node
+-        elements.append(self.data)
+-
+-        #visit right node
+-        if self.right:
+-            elements+=self.right.inorderTraversal()
+-
+-        return elements
+-
+-    def preorderTraversal(self):
+-        #root-left-right
+-        elements=[]
+-        #insert root
+-        elements.append(self.data)
+-        if self.left:
+-            elements+=self.left.preorderTraversal()
+-        if self.right:
+-            elements+=self.right.preorderTraversal()
+-
+-        return elements
+-    def postorderTraversal(self):
+-        #left-right-root
+-        elements=[]
+-        if self.left:
+-            elements+=self.left.postorderTraversal()
+-        if self.right:
+-            elements+=self.right.postorderTraversal()
+-        elements.append(self.data)
+-        return elements
+-
+-    def search(self,value):
+-        if self.data==value:
+-            return True
+-        elif value<self.data:
+-            if self.left:
+-                return self.left.search(value)
+-            else:
+-                return False
+-        else:
+-            if self.right:
+-                return self.right.search(value)
+-            else:
+-                return False
+-    def delete(self,value):
+-
+-        if value<self.data:
+-            if self.left:
+-                self.left=self.left.delete(value)
+-        elif value>self.data:
+-            if self.right:
+-                self.right=self.right.delete(value)
+-        else:
+-            #if value is found in a leaf node
+-            if self.left is None and self.right is None:
+-                return None
+-            #elif node has only left node
+-            elif self.right is None:
+-                self=self.left
+-                return self
+-            #node to get deleted has only right node
+-            elif self.left is None:
+-                self=self.right
+-                return self
+-            #node has both child nodes
+-            else:
+-                self.data=self.right.findMin()
+-                self.right=self.right.delete(self.data)
+-                return self
+-
+-
+-def constructBST(elements):
+-    root=BST(elements[0])
+-    for i in elements[1:]:
+-        root.addChild(i)
+-    return root
+-
+-if __name__=="__main__":
+-    elements=[15,12,27,7,88,14,20,23]
+-    # elements=["abhi","akshay","ani","bharath","bhimi","kishan","chowds","piggy","sriki","nuthan","nitish"]
+-    print("before : ",elements)
+-    bst=constructBST(elements)
+-    print("In-order traversal :",bst.inorderTraversal())
+-    print("Pre-order traversal :", bst.preorderTraversal())
+-    print("Post-order traversal :", bst.postorderTraversal())
+-
+-    # try:
+-    #     a=input("enter elements to search")
+-    # except ValueError:
+-    #     print("enter numbers only!")
+-    # print(a,"is present in the Binary Search Tree" if bst.search(a) else "is not present in the tree")
+-    # print("minimaum value in a binary tree : ",bst.findMin())
+-    # print("max value in a binary tree : ",bst.findMax())
+-
+Index: DataStructures/Trees/binarytree/ex-1.py
+===================================================================
+diff --git a/DataStructures/Trees/binarytree/ex-1.py b/DataStructures/Trees/binarytree/ex-1.py
+deleted file mode 100644
+--- a/DataStructures/Trees/binarytree/ex-1.py	
++++ /dev/null	
+@@ -1,51 +0,0 @@
+-# exercise:find minimaum and maximaum in a binary search tree
+-
+-from p1 import *
+-class BST_Exercise(BST):
+-    # exercise:find minimaum in a tree
+-    #by default the init() of BST class will be called
+-    # def __init__(self,data):
+-    #     super().__init__(data)
+-
+-
+-    def addChild(self,data):
+-        if data==self.data:
+-            return
+-        elif data<self.data:
+-
+-            #add data in left subtree
+-            if self.left:
+-                self.left.addChild(data)
+-            else:
+-                self.left=BST_Exercise(data)
+-        else:
+-                    #add data right in sub tree
+-            if self.right:
+-                self.right.addChild(data)
+-            else:
+-                self.right=BST_Exercise(data)
+-
+-    def findMin(self):
+-        if self.left:
+-            return self.left.findMin()
+-        else:
+-            return self.data
+-
+-    # find max in  tree
+-    def findMax(self):
+-        if self.right:
+-            return self.right.findMax()
+-        else:
+-            return self.data
+-def constructBST(elements):
+-    root=BST_Exercise(elements[0])
+-    for i in elements[1:]:
+-        root.addChild(i)
+-    return root
+-
+-if __name__=="__main__":
+-    elements=[15,12,27,7,88,14,20,23]
+-    bst=constructBST(elements)
+-    print("In-order traversal :", bst.inorderTraversal())
+-    print("minimaum value in a binary tree : ",bst.findMin())
+-    print("max value in a binary tree : ",bst.findMax())
+\ No newline at end of file
+Index: DataStructures/Trees/binarytree/ex-2.py
+===================================================================
+diff --git a/DataStructures/Trees/binarytree/ex-2.py b/DataStructures/Trees/binarytree/ex-2.py
+deleted file mode 100644
+--- a/DataStructures/Trees/binarytree/ex-2.py	
++++ /dev/null	
+@@ -1,2 +0,0 @@
+-#exercise:deletion of node
+-#-----------case 1:node has noo children,case 2:node has either of the children ,case 3: node has both the children
+\ No newline at end of file
+Index: DataStructures/Trees/exercise_1.py
+===================================================================
+diff --git a/DataStructures/Trees/exercise_1.py b/DataStructures/Trees/exercise_1.py
+deleted file mode 100644
+--- a/DataStructures/Trees/exercise_1.py	
++++ /dev/null	
+@@ -1,92 +0,0 @@
+-# Bharath(CE0)
+-#     |__abc(devlopment)
+-#         |__bcd(employee)
+-#         |__cde(employee)
+-#     |__xyz(testing)
+-#         |__yze(employee)
+-#         |__zef(employee)
+-# to print name tree,designation tree , name and designation tree
+-#to print tree based on level
+-
+-class Tree:
+-    def __init__(self,name,designation):
+-        self.name=name
+-        self.designation=designation
+-        self.parent=None
+-        self.children=[]
+-
+-    def add_child(self,child):
+-        self.children.append(child)
+-        child.parent=self
+-
+-    def get_level(self):
+-        level=0
+-        temp=self
+-        while temp.parent:
+-            level+=1
+-            temp=temp.parent
+-        return level
+-
+-    def print_tree(self,string="both"):
+-        temp=self.get_level()
+-        indent="    "*temp
+-        prefix=indent+"|__" if temp!=0 else ""
+-        if string=="name":
+-            print(prefix+self.name)
+-        elif string=="designation":
+-            print(prefix + self.designation)
+-        elif string=="both":
+-
+-            print(prefix + self.name + "(" + self.designation + ")")
+-        else:
+-            return
+-        if self.children:
+-            for child in self.children:
+-                child.print_tree(string)
+-
+-    def print_level_tree(self,level=0):
+-        if self.get_level()>level:
+-            return
+-        temp=self.get_level()
+-        indent="    "*temp
+-        prefix=indent+"|__" if temp!=0 else ""
+-        print(prefix + self.name + "(" + self.designation + ")")
+-
+-        if self.children:
+-            for child in self.children:
+-                child.print_level_tree(level)
+-
+-
+-
+-
+-
+-
+-
+-def build_tree():
+-    Bharath=Tree("Bharath","CE0")
+-    abc=Tree("abc","devlopment")
+-    bcd=Tree("bcd","employee")
+-    cde=Tree("cde","employee")
+-    xyz=Tree("xyz","testing")
+-    yze=Tree("yze","employee")
+-    zef=Tree("zef","employee")
+-    Bharath.add_child(abc)
+-    Bharath.add_child(xyz)
+-    abc.add_child(bcd)
+-    abc.add_child(cde)
+-    xyz.add_child(yze)
+-    xyz.add_child(zef)
+-    return Bharath
+-
+-
+-
+-
+-if __name__ == "__main__":
+-    node=build_tree()
+-    # print("<<< Name TREE >>>\n ")
+-    # node.print_tree("name")
+-    # print("\n\n\n<<< Designation TREE >>>\n ")
+-    # node.print_tree("designation")
+-    # print("\n\n\n<<< Name and Designation TREE >>>\n ")
+-    # node.print_tree("both")
+-    node.print_level_tree(2)
+\ No newline at end of file
+Index: DataStructures/Queues/Q.py
+===================================================================
+diff --git a/DataStructures/Queues/Q.py b/DataStructures/Queues/Q.py
+deleted file mode 100644
+--- a/DataStructures/Queues/Q.py	
++++ /dev/null	
+@@ -1,41 +0,0 @@
+-#   QUEUE : last in - first out
+-#       for inserting append at right end using obj.append(element)
+-#       for removing pop at left side by obj.popleft()
+-
+-from collections import deque
+-class Queue:
+-    def __init__(self,size=5):
+-        self.max=size
+-        self.queue=deque()
+-
+-    def enqueue(self,element):
+-        if len(self.queue)<self.max:
+-            self.queue.append(element)
+-        else:
+-            print("can't insert element < queue is full >")
+-
+-    def dequeue(self):
+-        if len(self.queue)!=0:
+-            a=self.queue.popleft()
+-            print(f"{a} is removed")
+-        else:
+-            print("can't remove < queue is empty >")
+-
+-    def __str__(self):
+-        return str(self.queue)
+-
+-
+-
+-
+-
+-if __name__=='__main__':
+-    a=Queue()
+-    #a.enqueue(element)
+-    #a.dequeue() --> remove and return element
+-    a.enqueue(10)
+-    a.enqueue(20)
+-    a.enqueue(30)
+-    print(a)
+-    a.dequeue()
+-    print(a)
+-
+Index: d1.py
+===================================================================
+diff --git a/d1.py b/d1.py
+deleted file mode 100644
+--- a/d1.py	
++++ /dev/null	
+@@ -1,41 +0,0 @@
+-class Node:
+-    def __init__(self,data,next=None):
+-        self.data=data
+-        self.next=None
+-    pass
+-
+-class list:
+-
+-    def __init__(self):
+-        self.head=None
+-
+-    def add_child(self,value):
+-        # case 1:if there is no node
+-        if self.head is None:
+-            self.head=Node(value)
+-            return
+-        temp=self.head
+-        if temp.next is None:
+-            temp.next=Node(value)
+-        else:
+-            while temp.next:
+-                temp=temp.next
+-            temp.next=Node(value)
+-
+-    def printList(self):
+-
+-        if self.head is None:
+-            print("empty list!")
+-        else:
+-            while self.head:
+-                print("->",self.head.data,end="")
+-                self.head=self.head.next
+-
+-
+-if __name__=='__main__':
+-    bikes_list=list()
+-    bikes_list.add_child("Glammar")
+-    bikes_list.add_child(("Unicorn 160"))
+-    bikes_list.add_child("R15")
+-    bikes_list.add_child("Hornet 160")
+-    bikes_list.printList()
+Index: p2.py
+===================================================================
+diff --git a/p2.py b/p2.py
+deleted file mode 100644
+--- a/p2.py	
++++ /dev/null	
+@@ -1,27 +0,0 @@
+-import numpy as np
+-
+-
+-def numpy_operations() -> dict:
+-    # Create a NumPy array [1, 2, 3, 4, 5]
+-    original_array = np.array([1, 2, 3, 4, 5])
+-
+-    # Add 10 to each element in the array
+-    modified_array = original_array + 10
+-
+-    # Calculate the mean of the original array
+-    mean_original = np.mean(original_array)
+-    mean_original=mean_original.
+-
+-    # Create and return the dictionary with the required information
+-    result = {
+-        "modified_array": modified_array.tolist(),
+-        "mean_original": mean_original
+-    }
+-
+-    return result
+-
+-
+-# Example usage
+-if __name__ == "__main__":
+-    result = numpy_operations()
+-    print(result)
+\ No newline at end of file
+Index: p3.py
+===================================================================
+diff --git a/p3.py b/p3.py
+deleted file mode 100644
+--- a/p3.py	
++++ /dev/null	
+@@ -1,31 +0,0 @@
+-import pandas as pd
+-
+-
+-def pandas_operations() -> dict:
+-    # Create a DataFrame with the given data
+-    data = {
+-        "Name": ["Alice", "Bob", "Charlie"],
+-        "Age": [25, 30, 35]
+-    }
+-    df = pd.DataFrame(data)
+-
+-    # Filter the DataFrame to include only rows where Age > 28
+-    print(df[df['Age'] > 28])
+-    filtered_df = df[df['Age'] > 28]
+-
+-    # Calculate the sum of the Age column
+-    age_sum = df['Age'].sum()
+-
+-    # Create and return the dictionary with the required information
+-    result = {
+-        "filtered_dataframe": filtered_df.to_dict(orient='records'),
+-        "sum_of_ages": age_sum
+-    }
+-
+-    return result
+-
+-
+-# Example usage
+-if __name__ == "__main__":
+-    result = pandas_operations()
+-    print(result)
+\ No newline at end of file
+diff --git a/example.txt b/example.txt
+deleted file mode 100644
