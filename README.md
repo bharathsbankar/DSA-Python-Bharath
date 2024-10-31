@@ -1,7 +1,8 @@
 <h1>DSA in python</h1>
 <br>
-#1.Stacks
-<br>
+##
+1.Stacks
+
 #2.Queues
 <br>
 #3.Tree - Tree, BST
