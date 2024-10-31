@@ -1,12 +1,12 @@
-<h1>DSA in python</h1>
+# DSA in python
 <br>
-##
-1.Stacks
 
-#2.Queues
-<br>
-#3.Tree - Tree, BST
-<br>
-#4.Hashing - chaining , linear probing
-<br>
-#5.Graphs
+## 1.Stacks
+
+## 2.Queues
+
+## 3.Tree - Tree, BST
+
+## 4.Hashing - chaining , linear probing
+
+## 5.Graphs
