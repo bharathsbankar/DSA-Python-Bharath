@@ -15,6 +15,34 @@ class Graph:
         path=path+[start]
         if start==end:
             return [path]
+        if start not in self.graph_dict:
+            return []
+        paths=[]
+        for node in self.graph_dict[start]:
+            if node not in path:
+                new_paths=self.getPath(node,end,path)
+                for p in new_paths:
+                    paths.append(p)
+        return paths
+
+
+    def getShortestPath(self,start,end,path=[]):
+        path=path+[start]
+
+        if start==end:
+            return path
+        if start not in self.graph_dict:
+            return None
+        sh_path=None
+        for node in self.graph_dict[start]:
+            if node not in path:
+                sp = self.getShortestPath(node,end,path)
+                if sp:
+                    if sh_path is None or len(sp) < len(sh_path):
+                        sh_path=sp
+        return sh_path
+
+
 
 
 
@@ -36,6 +64,7 @@ if __name__=="__main__":
             ]
     g1=Graph(routes)
     start="RNR"
-    end="RNR"
+    end="BLR"
     print(f"path from {start} and {end} is :{g1.getPath(start,end)}")
+    print(f" shortest path from {start} and {end} is :{g1.getShortestPath(start, end)}")
 
