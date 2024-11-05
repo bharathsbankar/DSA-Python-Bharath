@@ -11,6 +11,13 @@ class Graph:
                 self.graph_dict[start]=[end]
         print("graph_dictionary would be :",self.graph_dict)
 
+    def getPath(self,start,end,path=[]):
+        path=path+[start]
+        if start==end:
+            return [path]
+
+
+
     def no_of_incom_nodes(self,node):
 
         count=0
@@ -28,4 +35,7 @@ if __name__=="__main__":
             ("CDR","DVG")
             ]
     g1=Graph(routes)
+    start="RNR"
+    end="RNR"
+    print(f"path from {start} and {end} is :{g1.getPath(start,end)}")
 
