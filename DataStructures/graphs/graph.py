@@ -64,18 +64,21 @@ class Graph:
 
 
     def getShortestPath(self,start,end,path=[]):
-        path=path+[start]
+        path=path+[start]# path is used to trace a path in a recursion
 
         if start==end:
+            # this condition checks that the latest start which is passed to a getPath() is same as the end , even before it checks whether the start is key for a dictionary or not
             return path
         if start not in self.graph_dict:
+            # this condition defines that traversed path does not consist end and hence empty list is returned
             return None
-        sh_path=None
+        sh_path=None #this will hold the shortest path  from the  traversed set of paths and by default is initialized to None
         for node in self.graph_dict[start]:
-            if node not in path:
+            if node not in path:# this condition prevents the traversing of an already traversed node
                 sp = self.getShortestPath(node,end,path)
                 if sp:
                     if sh_path is None or len(sp) < len(sh_path):
+                        #if currentPath(sp) is less than previous shortestPath(sh_path)
                         sh_path=sp
         return sh_path
 
