@@ -1,3 +1,4 @@
+#timecomplexity : o(N^2)
 list=[1,4,2,5,3]
 print(f"list {list}")
 def selectionSort(list):

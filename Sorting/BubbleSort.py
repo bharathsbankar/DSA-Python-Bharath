@@ -1,6 +1,10 @@
 
 
 
+
+
+
+#timecomplexity : o(N^2)
 #################################################
 
 # # code for number of comparisons in bubble sort for n elements
