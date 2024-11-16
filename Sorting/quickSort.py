@@ -9,8 +9,8 @@ def partition(list,start,end):
     pivot=list[pivot_index]
 
     while start<end:
-    #outer while loop iterates till we find the position (end) which can be swapped with pivot
-        while start<len(list)-1 and( not list[start] > pivot):
+    #outer while loop iterates till we find the position (i.e end) which can be swapped with pivot
+        while start<len(list) and( not list[start] > pivot):
         #inner while loop iterates till list[start]>pivot
             start+=1
         while not list[end] <= pivot:
