@@ -9,11 +9,12 @@
 
 
 
-def partition(elements,end):
-    pivot_index=0
+def partition(elements,start,end):
+    pivot_index=start
+    #let us consider end element as a pivot element in an elements
     pivot=elements[end]
     while not pivot_index == end:
-        while pivot_index<len(elements)-1 and ( not elements[pivot_index] >= pivot):
+        while pivot_index<len(elements) and ( not elements[pivot_index] > pivot):
             pivot_index+=1
         i=pivot_index
         while i<len(elements)-1 and (not i < pivot):
@@ -26,13 +27,13 @@ def partition(elements,end):
 
 
 
-def quick_sort(elements,end):
-    pi=partition(elements,end)
+def quick_sort(elements,start,end):
+    pi=partition(elements,start,end)
 
 
 if __name__=="__main__":
     elements=[11,9,27,7,2,15,28]
     print(f"before sorting :{elements}")
     #fuction call
-    quick_sort(elements,end=len(elements)-1)
+    quick_sort(elements,0,len(elements)-1)
     print(f"after sorting :{elements}")
