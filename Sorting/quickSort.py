@@ -10,14 +10,15 @@ def partition(list,start,end):
 
     while start<end:
     #outer while loop iterates till we find the position (i.e end) which can be swapped with pivot
+
         while start<len(list) and( not list[start] > pivot):
         #inner while loop iterates till list[start]>pivot
             start+=1
-        while not list[end] <= pivot:
+        while end != pivot_index and (not list[end] < pivot):
         #inner while loop iterates till it lis[end]<=pivot is found
             end-=1
         if start<end:
-            #if block is used to swap only between start and end  but not with pivot_index and end
+            #if block make ensures that only swapping between start and end is done but not between end and pivot
             list[start],list[end]=list[end],list[start]
     if end!=pivot_index:
         # swapping with pivot element by list[end]
@@ -40,7 +41,7 @@ def quick_sort(elements,start,end):
 
 
 if __name__=="__main__":
-    elements=[11,9,27,7,2,15,28]
+    elements=[1,2,3,4]
     print(f"before sorting :{elements}")
     quick_sort(elements,0,len(elements)-1)
     print(f"after sorting :{elements}")
