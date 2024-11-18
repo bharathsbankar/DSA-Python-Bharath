@@ -1,78 +1,45 @@
-def merge_two_sorted_lists(a,b,key,descending=False):
+# you can use this to sort strings too
+def merge_sort(elements, key, descending=False):
+    size = len(elements)
 
-    a_len=len(a)
-    b_len=len(b)
-    k=i=j=0
-    if not descending:
-        while i<a_len and j<b_len:
+    if size == 1:
+        return elements
 
-            if a[i][key]<=b[j][key]:
-                elements[k]=a[i]
-                i+=1
+    left_list = merge_sort(elements[0:size // 2], key, descending)
+    right_list = merge_sort(elements[size // 2:], key, descending)
+    sorted_list = merge(left_list, right_list, key, descending)
+
+    return sorted_list
+
+
+def merge(left_list, right_list, key, descending=False):
+    merged = []
+    if descending:
+        while len(left_list) > 0 and len(right_list) > 0:
+            if left_list[0][key] >= right_list[0][key]:
+                merged.append(left_list.pop(0))
             else:
-                elements[k]=b[j]
-                j+=1
-            k+=1
-        #still some elements may be left in a sub arrays
+                merged.append(right_list.pop(0))
 
     else:
-        while i < a_len and j < b_len:
-
-            if a[i][key]>=b[j][key]:
-                elements[k] = a[i]
-                i += 1
+        while len(left_list) > 0 and len(right_list) > 0:
+            if left_list[0][key] <= right_list[0][key]:
+                merged.append(left_list.pop(0))
             else:
-                elements[k] = b[j]
-                j += 1
-            k += 1
-    while i < a_len:
-        elements[k]=a[i]
-        i+=1
-        k+=1
-    while j<b_len:
-        elements[k]=b[j]
-        j+=1
-        k+=1
-        # still some elements may be left in a sub arrays
+                merged.append(right_list.pop(0))
+
+    merged.extend(left_list)
+    merged.extend(right_list)
+    return merged
 
 
-# def merge_sort_ele(data,key,descending=False):
-#     elements=[]
-#     for i in range(0,len(data)):
-#         elements.append(data[i][key])
-#     merge_sort(elements,descending)
-
-
-
-
-
-def merge_sort(elements,key,descending=False):
-
-    if len(elements)<=1:
-        return
-    mid=len(elements)//2
-    left=elements[:mid]
-    right=elements[mid:]
-
-    merge_sort(left,key,descending=False)
-    merge_sort(right,key,descending=False)
-
-    merge_two_sorted_lists(left,right,key,descending=False)
-
-
-
-
-
-if __name__=="__main__":
-    # a=[5]
-    # b=[7]
+if __name__ == '__main__':
     elements = [
-        { 'name': 'vedanth',   'age': 17, 'time_hours': 1},
-        { 'name': 'rajab', 'age': 12,  'time_hours': 3},
-        { 'name': 'vignesh',  'age': 21,  'time_hours': 2.5},
-        { 'name': 'chinmay',  'age': 24,  'time_hours': 1.5},
+        {'name': 'vedanth', 'age': 17, 'time_hours': 1},
+        {'name': 'rajab', 'age': 12, 'time_hours': 3},
+        {'name': 'vignesh', 'age': 21, 'time_hours': 2.5},
+        {'name': 'chinmay', 'age': 24, 'time_hours': 1.5},
     ]
-    # print(elements[0]["time_hours"])
 
-    merge_sort(elements,"time_hours")
-    print(elements)
+    sorted_list = merge_sort(elements, key='time_hours', descending=True)
+    print(sorted_list)
