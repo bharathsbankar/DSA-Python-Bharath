@@ -19,7 +19,7 @@ class Stack:
             return "stack underflow"
 
     def peek(self):
-        return self.stack[-1]
+        return self.stack[-1] if self.length()!=0 else "empty stack"
 
     def length(self):
         return len(self.stack)
@@ -34,7 +34,9 @@ class Stack:
 
 if __name__ == '__main__':
     a=Stack(4)
+    print("peek element", a.peek())
     a.push(14)
+    print("peek element", a.peek())
     a.push(24)
     a.push(34)
     a.push(44)
